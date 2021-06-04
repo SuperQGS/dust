@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    
+        <style>
+
+            html, body {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+
+            }
+
+            #all {
+                width: 100%;
+                height: 100%;
+            }
+
+            #left {
+                width: 33%;
+                height: 100%;
+                float: left;
+            }
+
+            #center {
+                width: 34%;
+                height: 100%;
+                float: left;
+            }
+
+            #right {
+                width: 33%;
+                height: 100%;
+                float: left;
+            }
+            
+            #stats {
+                float: right;
+                border: 1px solid black;
+                width: 50%;
+                height: 48%;
+                margin-top: 2%;
+            }
+            
+            #tilebox {
+                float: right;
+                border: 1px solid black;
+                width: 50%;
+                height: 48%;
+                margin-top: 2%;
+            }
+            
+            #inven {
+                float: left;
+                border: 1px solid black;
+                width: 50%;
+                height: 48%;
+                margin-top: 2%;
+            }
+            
+            #crafting {
+                float: left;
+                border: 1px solid black;
+                width: 50%;
+                height: 48%;
+                margin-top: 2%;
+            }
+            
+            #center {
+                text-align: center;
+            }
+            
+            #topworld {
+                
+            }
+            
+            #worldcanvas {
+                border: 1px solid black;
+                width: 95%;
+            }
+            
+            #bottomworld {
+                text-align: center;
+                width: 100%;
+            }
+            
+            #paragraphs {
+                display: inline-block;
+                width: 50%;
+            }
+        </style>
+        
+    </head>
+    
+    
+    <body>
+        <div id="all">
+            <div id="left">
+                experiment v0.0
+                <div id="stats">
+                    <b>stats</b>
+                    <hr>
+                </div>
+                <div id="tilebox">
+                    <div id="topworld">
+                        <b>world</b>
+                    <hr>
+                    </div>
+                    <div id="bottomworld">
+                        <canvas id="worldcanvas" width="100" height="100"></canvas>
+                        <br>
+                        <i>1 tile: x ft</i>
+                    </div>
+                </div>
+            </div>
+            <div id="center">
+                <br><br><br>
+                <h1 id="roomname">The Travelers Ripoff Experiment v0.0</h1>
+                <div id="paragraphs">This build emulates <i>a low home</i> from torogadude's thetravelers.online<br><br>Click "Run" to Start.</div>
+                <br><br>
+                <div id="buttons"><button onclick="openroom(0);">Run</button></div>
+            </div>
+            <div id="right">
+                <div id="inven">
+                    <b>inventory</b>
+                    <hr>
+                </div>
+                <div id="crafting">
+                    <b>crafting</b>
+                    <hr>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    <script>
+        
+        var rooms = [
+            {//0
+                title: "a low home ",
+                desc: "the simple structure juts out of the landscape like a raw bone, short and worn by time. the door is chained shut, but the one window to the side is long shattered.",
+                buttons: [
+                    {name: "climb inside", moveto:1},
+                ]
+            },
+            {//1
+                title: "a home office",
+                desc: "the back wall has been ripped from the rest of the room, resting in a pile of debris where the rest of the house used to be. there's a computer in here on a desk, still plugged into the wall. somehow it still receives power, the monitor lit and awake.",
+                buttons: [
+                    {name: "the computer", moveto:2},
+                ]
+            },
+            {//2
+                title: "the computer",
+                desc: "the desktop is empty except for the recycle bin and one file, called \"found.txt\".",
+                buttons: [
+                    {name: "found.txt", moveto:3},
+                ]
+            },
+            {//3
+                title: "a text file",
+                desc: "the notepad program opens up and reveals a quick message.<br><br>\"hello, whoever ends up reading this. at some point someone cleared this computer but i thought i'd leave a message anyway. i've been seeing these people... strange people walking around, as though in a trance. they move quickly, but without effort; i've watched one walk from horizon to horizon without stopping for even a second. i hide when i see them. i'm out of food and water, probably gonna die soon. maybe i'm just hallucinating.\"<br><br>the file's properties reveal it was written about thirty years ago. very recent, relatively.",
+                buttons: [
+                    {name: "back outside", moveto:0},
+                ]
+            },
+        ]
+        
+        
+        function openroom(num) {
+            document.getElementById("roomname").innerHTML = rooms[num].title;
+            document.getElementById("paragraphs").innerHTML = "<p>" + rooms[num].desc + "</p>";
+            
+            var buttons = "";
+            for (i = 0; i < rooms[num].buttons.length; i++) {
+                buttons += "<button onclick='openroom(" + rooms[num].buttons[i].moveto + ")'>" + rooms[num].buttons[i].name + "</button>"
+            }
+            
+            document.getElementById("buttons").innerHTML = buttons;
+        }
+    </script>
+</html>
